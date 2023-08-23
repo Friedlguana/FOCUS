@@ -3,7 +3,7 @@ from functions import port_scanner, OpenPorts, pushbullet_noti
 
 print('Port scanner is Running...')
 # Formatting Whitelist Ports
-with open('Whitelisted Ports.txt', 'r') as WhitelistedPortsFile:
+with open("Whitelisted Ports.txt", 'r') as WhitelistedPortsFile:
     WhitelistedPortsList = [int(port.strip()) for port in WhitelistedPortsFile.readlines()]
 
 # Port scanning via multi-thread distribution
@@ -24,13 +24,4 @@ for port in OpenPorts:
 
 if len(OpenPorts) == 0:
     print('No port detected.')
-else:
-    #Port closer
-    print('Attempting to close ports...')
-    pushbullet_noti('Open Ports Detected and Terminated:\n', message)
-    print("")
-    print("")
-    print("Scan Complete!")
-    print(f"Time taken for scan: {end - start} Seconds")
-    print('Hit enter to continue...')
-    input()
+input('Scan Complete')

@@ -59,7 +59,6 @@ while True:
             print('Attempting to close ports...')
             for port in OpenPorts:
                 PortCloser(port)
-            pushbullet_noti('Open Ports Detected and Terminated:\n', message)
             print("")
             print("")
             print("Scan Complete!")
@@ -133,7 +132,7 @@ while True:
 
     elif UserInput1.strip() == '0':
         break
-
+    
     else:
         clear()
         print('Invalid Input. Hit enter to return')

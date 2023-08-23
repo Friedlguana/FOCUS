@@ -1,3 +1,4 @@
 colorama
 psutil
 requests
+face_recognition

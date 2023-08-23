@@ -19,7 +19,7 @@ def port_scanner(port):
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((target, port))
-        print(f"Port {port} is open")
+        print(f"{port}")
         OpenPorts.append(port)
     except:
         pass
