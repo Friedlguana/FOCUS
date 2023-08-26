@@ -1,5 +1,5 @@
+import threading, time, webbrowser
 from colorama import Fore
-import threading, time, psutil, webbrowser
 from functions import port_scanner, clear, pushbullet_noti, PortCloser ,OpenPorts
 
 while True:
