@@ -9,19 +9,19 @@ from email import encoders
 
 # Load known face encodings and names
 known_face_encodings = []
-known_face_names = ['Rijul', 'Ravi']
+known_face_names = ['Arya', 'Rijul']
 
 # Load the reference images for each face
-reference_image_1 = face_recognition.load_image_file('test.jpg')
+reference_image_1 = face_recognition.load_image_file(f'{os.getcwd()}\\accepted faces\\test.jpg')
 reference_face_encoding_1 = face_recognition.face_encodings(reference_image_1)[0]
 known_face_encodings.append(reference_face_encoding_1)
 
-reference_image_2 = face_recognition.load_image_file('test1.jpg')
+reference_image_2 = face_recognition.load_image_file(f'{os.getcwd()}\\accepted faces\\test1.jpg')
 reference_face_encoding_2 = face_recognition.face_encodings(reference_image_2)[0]
 known_face_encodings.append(reference_face_encoding_2)
 
 # Open the webcam
-cap = cv2.VideoCapture(0)  # Use 0 for default webcam, 1 if you have an external one
+cap = cv2.VideoCapture(1)  # Use 0 for default webcam, 1 if you have an external one
 
 tolerance = 0.5
 r = 0
@@ -46,14 +46,12 @@ while True:
         
         if name == 'Rijul':
             r+=1
-            if r==10:
-                print('Rijul detected')
-                break  # Break when Rijul is detected
+            if r==5:
+                break
         elif name == 'Unknown':
             u += 1
-            if u == 10:
-                print('Unknown')
-                break  # Break when Unknown is detected
+            if u == 5:
+                break
             
         cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 0), 2)
         cv2.putText(frame, name, (left, top - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
@@ -61,12 +59,12 @@ while True:
     cv2.imshow('Face Recognition', frame)
     if u == 5:
         cv2.destroyAllWindows()
-        cv2.imwrite('photo.jpg', frame)
+        cv2.imwrite(f'{os.getcwd()}\\illegal logins\\photo.jpg', frame)
         smtp_port = 587
         smtp_server = "smtp.gmail.com"
 
         email_from = "aryamirani06@gmail.com"
-        email_list = ["rijulravikumar@gmail.com", 'aryaamiranii@gmail.com']
+        email_list = ["rijulravikumar@gmail.com", "aryaamiranii@gmail.com"]
         pswd = "xbxskelbiclhyjcz"
         subject = "UNAUTHORIZED LOGIN ATTEMPT !!"
 
@@ -81,7 +79,7 @@ while True:
 
                 msg.attach(MIMEText(body, 'plain'))
 
-                filename = "photo.jpg"
+                filename = f'{os.getcwd()}\\illegal logins\\photo.jpg'
                 attachment = open(filename, 'rb')  # r for read and b for binary
                 attachment_package = MIMEBase('application', 'octet-stream')
                 attachment_package.set_payload((attachment).read())
@@ -104,7 +102,6 @@ while True:
         break
 
     if r == 5:
-        print('Rijul detected')
         os.startfile(r"Whitelisted Ports.txt")
         break
     
