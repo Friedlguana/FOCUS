@@ -1,7 +1,7 @@
 
 <h1 align="center">
   <br>
-  <a href="https://github.com/Friedlguana/FOCUS"><img src="https://github.com/Friedlguana/FOCUS/blob/main/FOCUS.png" alt="FOCUS" width="900"></a>
+  <a href="https://github.com/Friedlguana/FOCUS"><img src="https://cdn.discordapp.com/attachments/879937276858220564/1092860472723779625/image.png" alt="FOCUS" width="900"></a>
   <br>
   <b> <u>
   🌧️ The FOCUS Framework 🌧️
