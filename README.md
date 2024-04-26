@@ -55,12 +55,4 @@ $ cd FOCUS
 # Run the Framework
 $ python3 main.py
 ```
-<u>
-
-## **✨Credits**
-</u>
-
-This framework was made by -
-- **Rijul** 
-- **Arya**
 ------------------------
