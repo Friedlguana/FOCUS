@@ -44,26 +44,21 @@
 # Clone this repository
 $ git clone https://github.com/rijulbulking/FOCUS
 
-# Install the dependencies 
-$ pip install -r requirements.txt 
-
 # Go into the repository
 $ cd FOCUS
+
+# Install the dependencies 
+$ pip install -r requirements.txt
 
 # Run the Framework
 $ python3 main.py
 ```
 ------------------------
 <b> <u>
-## **✨Project History**
+## **✨Contributors**
 </b> </u>
-First Verion of the code focused primarily on developing a mechanism to scan all possible ports of the local system. However scan times would take much longer than anticipated:
 
-<a href="https://github.com/rijulbulking/FOCUS"><img src="https://raw.githubusercontent.com/rijulbulking/FOCUS/refs/heads/master/ProjectPhotos/FirstScanTime.png" alt="First Test Result" width="300"> </a>
+* <a href="https://github.com/Friedlguana">Friedlguana</a>
+* <a href="https://github.com/humaidhahm">humaidhahm</a>
+* <a href="https://github.com/svm1048">svm1048</a>
 
-<br>
-Scanning just 100 ports would take 204 Seconds, meaning scanning all 65535 ports would take approximately 36 hours.
-<br>
-However a method was found where multiple ports scans could be initialized in seperate threads. This tremendously reduced the scan time to seconds:
-
-<a href="https://github.com/rijulbulking/FOCUS"><img src="https://raw.githubusercontent.com/rijulbulking/FOCUS/refs/heads/master/ProjectPhotos/SecondScanTest.png" alt="Second Test Result" width="300"> </a>
