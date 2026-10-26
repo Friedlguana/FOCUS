@@ -1,19 +1,14 @@
-import time, threading
-from functions import singlePortScanner, OpenPorts, WhitelistedPortsList
+"""Deprecated: use ``focus dashboard`` (ports tab)."""
 
-print('Port scanner is Running...')
+import sys
+from pathlib import Path
 
-# Port scanning via multi thread distribution
-start = time.time()
-for port in range(1, 65536):
-    if port in WhitelistedPortsList:
-        continue
-    thread = threading.Thread(target=singlePortScanner, args=[port])
-    thread.start()
-thread.join()
-end = time.time()
+if __name__ == "__main__":
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    try:
+        from focus.cli import main
+    except ImportError as error:
+        import focusenv
 
-
-if len(OpenPorts) == 0:
-    print('No port detected.')
-input(f'Scan Complete\nTime taken: {end-start} seconds\n')
+        raise SystemExit(focusenv.reexec_or_explain(error))
+    raise SystemExit(main(["dashboard", "--tab", "ports", *sys.argv[1:]]))

@@ -1,6 +1,6 @@
 psutil
 requests
-colorama
 pandas
-plotly
-Flask
+scikit-learn
+joblib
+rich

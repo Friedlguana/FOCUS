@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "focus-framework"
+version = "2.0.0"
+description = "A terminal-first network security framework: port exposure analysis, live traffic monitoring and anomaly detection."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "FOCUS contributors" }]
+dependencies = [
+    "psutil",
+    "requests",
+    "pandas",
+    "scikit-learn",
+    "joblib",
+    "rich",
+]
+
+[project.scripts]
+focus = "focus.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["focus*"]
+
+[tool.setuptools.package-data]
+focus = ["data/*.joblib", "data/*.csv"]

@@ -1,78 +1,19 @@
-import time, webbrowser, subprocess
-from colorama import Fore
-from functions import singlePortScanner, clear, PortCloser , multiPortScanner, OpenPorts, WhitelistedPortsList
+"""FOCUS entry point.
 
-while True:
-    #Display project name
-    clear()
-    print("")
-    print(f'{Fore.LIGHTRED_EX}🎯    ███████╗     ██████╗      ██████╗    ██╗   ██╗    ███████╗    🎯')
-    print(f'  🎯  ██╔════╝    ██╔═══██╗    ██╔════╝    ██║   ██║    ██╔════╝  🎯  ')
-    print(f'🎯    █████╗      ██║   ██║    ██║         ██║   ██║    ███████╗    🎯')
-    print(f'  🎯  ██╔══╝      ██║   ██║    ██║         ██║   ██║    ╚════██║  🎯  ')
-    print(f'🎯    ██║         ╚██████╔╝    ╚██████╗    ╚██████╔╝    ███████║    🎯')
-    print(f'  🎯  ╚═╝          ╚═════╝      ╚═════╝     ╚═════╝     ╚══════╝  🎯  ')
-    print(f"{Fore.BLUE}ᴀ ᴄʏʙᴇʀꜱᴇᴄᴜʀɪᴛʏ ꜰʀᴀᴍᴇᴡᴏʀᴋ ᴅᴇᴠᴇʟᴏᴘᴇᴅ ꜰᴏʀ ᴇɴᴛᴇʀᴘʀɪꜱᴇ ɴᴇᴛᴡᴏʀᴋ ᴘʀᴏᴛᴇᴄᴛɪᴏɴ")
-    print(Fore.RESET)
+    python main.py            interactive shell
+    python main.py --help     command reference
+    python main.py dashboard      # the live dashboard
+"""
 
-    #Display project options
-    print(f"{Fore.CYAN}Options -")
-    print("")
-    print(f"{Fore.GREEN}1."f"{Fore.MAGENTA} Port Scanner")
-    print(f"{Fore.GREEN}2."f"{Fore.MAGENTA} AI Network Surge Detector")
-    print(f"{Fore.GREEN}3."f"{Fore.MAGENTA} Github Link")
-    print('')
-    print(f"{Fore.GREEN}0."f"{Fore.MAGENTA} Exit Program")
+import sys
+from pathlib import Path
 
-    print(f"{Fore.CYAN}")
-    #Wait on user input
-    UserInput1 = (input(">  "))
-    print(f"{Fore.RESET}")
+if __name__ == "__main__":
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    try:
+        from focus.cli import main
+    except ImportError as error:
+        import focusenv
 
-    #Input Tree
-    if UserInput1.strip() == '1':
-        clear()
-        print('Port scanner is Running...')
-
-        # Port scanning via multi-thread distribution
-        start = time.time()  # Function Start Time
-        multiPortScanner(1, 65536)
-        end = time.time()
-
-        #Message formatting
-        message = ''
-        for port in OpenPorts:
-            message = message + str(port) + '\n'
-
-        if len(OpenPorts) == 0:
-            print('No port detected.')
-        else:
-            #Port closer
-            print('Attempting to close ports...')
-            for port in OpenPorts:
-                PortCloser(port)
-            print("")
-            print("")
-            print("Scan Complete!")
-            print(f"Time taken for scan: {end - start} Seconds")
-            print('Hit enter to continue...')
-            input()
-
-    elif UserInput1.strip() == '3':
-        clear()
-        print(webbrowser.open('https://github.com/rijulbulking/FOCUS'))
-
-    elif UserInput1.strip() == '2':
-        clear()
-        try:
-            subprocess.run(['python', 'aiNetworkSpikeDetector.py'])
-        except KeyboardInterrupt:
-            pass
-
-    elif UserInput1.strip() == '0':
-        break
-    
-    else:
-        clear()
-        print('Invalid Input. Hit enter to return')
-        input()
+        raise SystemExit(focusenv.reexec_or_explain(error))
+    raise SystemExit(main())
