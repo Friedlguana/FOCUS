@@ -9,6 +9,52 @@
   <br>
 </h1>
 
+<h2 align="center">Screenshots</h2>
+
+<div align="center">
+
+### The Dashboard (full-screen, one command)
+![FOCUS Dashboard](ProjectPhotos/FOCUS.png)
+
+_One screen, every section: ports (with service/process/risk), vitals (surge level, rates),
+activity (per-process I/O), endpoints (organisations & locations), and history (live or recorded chart)._
+
+</div>
+
+<h3>Dashboard Sections</h3>
+
+| Section | Key Content | Example |
+|---------|-------------|---------|
+| **Ports** | Open ports with service, owning process, risk rating; scrolls with ↑↓ | `5555 → python.exe → low` |
+| **Vitals** | Surge level (CALM/ELEVATED/SURGE), inbound/outbound rates, peak, totals | `z 3.12 · 1 ev` |
+| **Activity** | Per-process read/write I/O; svchost hosts noted | `oracle.exe 9312 · 767 / 31.9` |
+| **Endpoints** | Remote IPs with organisation, location, processes | `162.159.135.234:443 → Discord.exe` |
+| **History** | Recorded traffic CSV chart (braille series) or live samples | `t=0.00–10.00s` |
+
+<h3>Close Dialog</h3>
+
+When you select a port/process and press **Enter**, a small centred dialog appears showing:
+- What will be closed (port or process name + PID)
+- I/O rates if a process
+- Option to press **Enter** to terminate (same-user) or **UAC retry** if elevation needed
+- **Esc** to cancel, **c** to close all owners
+
+<h3>One-Shot Tabs</h3>
+
+```bash
+$ python main.py dashboard --tab overview --json
+# → JSON to stderr, one-screen render
+
+$ python main.py dashboard --tab ports --ports 1-1024 --json
+# → port scan results as JSON object
+
+$ python main.py dashboard --tab endpoints --json --no-geo
+# → endpoint list with resolved/unavailable status
+
+$ python main.py dashboard --tab history --last 30 --json
+# → traffic samples from CSV
+```
+
 <h4 align="center">A terminal-first network security framework for port exposure analysis, live traffic monitoring and anomaly detection. Made with  <a href="https://www.python.org/" target="_blank">Python</a>.</h4>
 
 
